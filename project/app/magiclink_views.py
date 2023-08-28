@@ -17,7 +17,7 @@ from magiclink.utils import get_url_path
 from magiclink.views import Login
 from notifications_python_client.notifications import NotificationsAPIClient
 
-from llmchat.settings import (
+from project.settings import (
     ALLOWED_EMAIL_DOMAINS,
     GC_NOTIFY_API_KEY,
     GC_NOTIFY_TEMPLATE_ID,
