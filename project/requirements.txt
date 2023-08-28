@@ -1,0 +1,6 @@
+django
+django-environ
+django-jinja
+django-magiclink
+google-cloud-secret-manager
+psycopg2-binary
