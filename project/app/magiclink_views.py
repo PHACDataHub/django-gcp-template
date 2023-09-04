@@ -15,7 +15,6 @@ from magiclink.helpers import create_magiclink, get_or_create_user
 from magiclink.models import MagicLinkError
 from magiclink.utils import get_url_path
 from magiclink.views import Login
-from notifications_python_client.notifications import NotificationsAPIClient
 
 from project.settings import (
     ALLOWED_EMAIL_DOMAINS,
@@ -24,6 +23,9 @@ from project.settings import (
     MAGICLINK_METHOD,
     POWER_AUTOMATE_URL,
 )
+
+# from notifications_python_client.notifications import NotificationsAPIClient
+
 
 User = get_user_model()
 log = logging.getLogger(__name__)
@@ -46,7 +48,9 @@ class EmailLoginView(Login):
             "*" in ALLOWED_EMAIL_DOMAINS
             or email.split("@")[-1] in ALLOWED_EMAIL_DOMAINS
         ):
-            form.add_error("email", f"Email must end in {' | '.join(ALLOWED_EMAIL_DOMAINS)}")
+            form.add_error(
+                "email", f"Email must end in {' | '.join(ALLOWED_EMAIL_DOMAINS)}"
+            )
             context["login_form"] = form
             return self.render_to_response(context)
 

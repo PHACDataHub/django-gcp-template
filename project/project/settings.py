@@ -171,7 +171,15 @@ WSGI_APPLICATION = "project.wsgi.application"
 # [START db_setup]
 # [START gaestd_py_django_database_config]
 # Use django-environ to parse the connection string
-DATABASES = {"default": env.db()}
+# DATABASES = {"default": env.db()}
+
+#  Use local SQLlite
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "../db.sqlite3"),
+    }
+}
 
 # If the flag as been set, configure to use proxy
 if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
@@ -192,13 +200,13 @@ if os.getenv("TRAMPOLINE_CI", None):
         }
     }
 
-STORAGES = {
-    "default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"},
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
-GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+# STORAGES = {
+#     "default": {"BACKEND": "storages.backends.gcloud.GoogleCloudStorage"},
+#     "staticfiles": {
+#         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+#     },
+# }
+# GS_BUCKET_NAME = env("GS_BUCKET_NAME")
 GS_BLOB_CHUNK_SIZE = 5 * 1024 * 1024
 GS_FILE_OVERWRITE = False
 

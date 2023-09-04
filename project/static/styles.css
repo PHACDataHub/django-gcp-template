@@ -181,3 +181,10 @@ ul.dash {
 h2.card-header {
   font-size: 1.25em;
 }
+
+/* Vertical center contents */
+#login-container {
+  height: calc(100vh - 6rem);
+  display: flex;
+  align-items: center;
+}
